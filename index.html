@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="globalStyles.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="container">
+    <div class="calculator-container">
+      <div class="calculator-display">
+        <span class="element-display">0</span>
+      </div>
+      <div class="calculator-elements">
+        <button class="elements-childs">AC</button>
+        <button class="elements-childs">+/-</button>
+        <button onclick="operations('%')" class="elements-childs">%</button>
+        <button onclick="operations('/')" class="elements-childs">/</button>
+        <button class="elements-childs">7</button>
+        <button class="elements-childs">8</button>
+        <button class="elements-childs">9</button>
+        <button onclick="operations('*')" class="elements-childs">X</button>
+        <button class="elements-childs">4</button>
+        <button class="elements-childs">5</button>
+        <button class="elements-childs">6</button>
+        <button onclick="operations('-')" class="elements-childs">-</button>
+        <button class="elements-childs">1</button>
+        <button class="elements-childs">2</button>
+        <button class="elements-childs">3</button>
+        <button onclick="operations('+')" class="elements-childs">+</button>
+        <button class="elements-childs">0</button>
+        <button class="elements-childs">.</button>
+        <button class="elements-childs">=</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
