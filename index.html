@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg">
   <title>Calculator</title>
   <link rel="stylesheet" href="globalStyles.css">
   <link rel="stylesheet" href="style.css">
@@ -20,9 +21,9 @@
         <span class="element-display-calc"></span>
         <span class="element-display-result">0</span>
       </div>
-      <hr>
+      <hr class="line-break">
       <div class="calculator-elements">
-        <button class="elements-childs operations">AC</button>
+        <button onclick="clearCalculator()" class="elements-childs operations" id="clear">AC</button>
         <button class="elements-childs operations material-icons aa">&#xe14a;</button>
         <button onclick="calculate('%')" class="elements-childs operations">&#37;</button>
         <button onclick="calculate('/')" class="elements-childs operations">&#247;</button>
@@ -38,7 +39,7 @@
         <button onclick="calculate(2)" class="elements-childs">2</button>
         <button onclick="calculate(3)" class="elements-childs">3</button>
         <button onclick="calculate('+')" class="elements-childs operations">&#43;</button>
-        <button class="elements-childs operations">&#10070;</button>
+        <button class="elements-childs operations menu">&#10070;</button>
         <button onclick="calculate(0)" class="elements-childs">0</button>
         <button class="elements-childs">.</button>
         <button onclick="calculate('=')" class="elements-childs operations">&#61;</button>
