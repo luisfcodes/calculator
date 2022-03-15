@@ -91,7 +91,7 @@
 }
 
 .menu {
-  cursor: default;
+  cursor: not-allowed;
 }
 
 .menu:hover{
