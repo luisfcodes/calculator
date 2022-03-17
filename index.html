@@ -24,8 +24,8 @@
       <hr class="line-break">
       <div class="calculator-elements">
         <button onclick="clearCalculator()" class="elements-childs operations" id="clear">AC</button>
-        <button class="elements-childs operations material-icons aa">&#xe14a;</button>
-        <button onclick="calculate('%')" class="elements-childs operations">&#37;</button>
+        <button class="elements-childs operations material-icons not-allowed">&#xe14a;</button>
+        <button class="elements-childs operations not-allowed">&#37;</button>
         <button onclick="calculate('/')" class="elements-childs operations">&#247;</button>
         <button onclick="calculate(7)" class="elements-childs">7</button>
         <button onclick="calculate(8)" class="elements-childs">8</button>
@@ -39,9 +39,9 @@
         <button onclick="calculate(2)" class="elements-childs">2</button>
         <button onclick="calculate(3)" class="elements-childs">3</button>
         <button onclick="calculate('+')" class="elements-childs operations">&#43;</button>
-        <button class="elements-childs operations menu">&#10070;</button>
+        <button class="elements-childs operations not-allowed">&#10070;</button>
         <button onclick="calculate(0)" class="elements-childs">0</button>
-        <button class="elements-childs">.</button>
+        <button onclick="calculate('.')" class="elements-childs">.</button>
         <button onclick="calculate('=')" class="elements-childs operations">&#61;</button>
       </div>
     </div>

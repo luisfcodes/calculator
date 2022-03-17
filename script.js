@@ -2,12 +2,14 @@ let numbers = []
 let currentNumber = ''
 let lastOperation = ''
 let historyCalc = ''
+let result
 let elementDisplayResult = document.querySelector('.element-display-result')
 let elementDisplayCalc = document.querySelector('.element-display-calc')
 let buttonClear = document.getElementById('clear')
 
 
 function clearCalculator() {
+  result = undefined
   buttonClear.textContent = 'AC'
   currentNumber = ''
   numbers = []
@@ -27,12 +29,35 @@ function calculate(element) {
     currentNumber += element
     historyCalc = currentNumber
   } else if (isNaN(element) && currentNumber.length === 0) {
-    return
+    if(result !== undefined && element !== "."){
+      console.log('aa')
+        elementDisplayCalc.classList.remove("element-display-calc-total")
+        elementDisplayResult.classList.remove("element-display-result-total")
+
+        numbers[0] = Number(result)
+        historyCalc = `${result}${element}` 
+        lastOperation = element
+    } else {
+      return
+    }
+    
   } else if (isNaN(element) && numbers.length === 0 && element !== "=") {
-    numbers[0] = Number(currentNumber)
-    currentNumber = ''
-    historyCalc += element
-    lastOperation = element
+      if(element === "."){
+        const searchCharacter = currentNumber.includes(".")
+        if(!searchCharacter){
+          currentNumber += element
+          historyCalc += element
+        }
+      } else if (element === "%"){
+        currentNumber = currentNumber / 100
+        historyCalc = currentNumber
+      } else {
+        numbers[0] = Number(currentNumber)
+        currentNumber = ''
+        historyCalc += element
+        lastOperation = element
+      }
+    
   }
 
   if (isNaN(element) && numbers.length > 0) {
@@ -41,22 +66,31 @@ function calculate(element) {
       currentNumber = ''
       elementDisplayCalc.classList.add("element-display-calc-total")
       elementDisplayResult.classList.add("element-display-result-total")
+      result = numbers[1]
       numbers = []
       return
     }
 
-
-
-    if (lastOperation !== element) {
-      lastOperation = element
-      numbers[0] = numbers[1]
-      currentNumber = ''
-      historyCalc += element
-    } else if (lastOperation === element && numbers[1] !== undefined) {
-      numbers[0] = numbers[1]
-      currentNumber = ''
-      historyCalc += element
+    if(element === "." && numbers[1] !== undefined){
+      const searchCharacter = currentNumber.includes(".")
+      if(!searchCharacter){
+        currentNumber += "."
+        historyCalc += element
+      }
+    } else {
+      if (lastOperation !== element) {
+        lastOperation = element
+        numbers[0] = numbers[1]
+        currentNumber = ''
+        historyCalc += element
+      } else if (lastOperation === element && numbers[1] !== undefined) {
+        numbers[0] = numbers[1]
+        currentNumber = ''
+        historyCalc += element
+      }
     }
+
+    
   }
 
   if (!isNaN(element) && numbers.length > 0) {
@@ -77,9 +111,12 @@ function calculate(element) {
       case '/':
         currentNumber += element
         numbers[1] = (numbers[0] / Number(currentNumber)).toLocaleString('en-US', {
-          minimumFractionDigits: 2,
+          minimumFractionDigits: 0,
           maximumFractionDigits: 7
         })
+        break
+      case '%':
+        
         break
     }
   }
@@ -95,3 +132,6 @@ function calculate(element) {
   elementDisplayCalc.textContent = historyCalc
 
 }
+
+
+

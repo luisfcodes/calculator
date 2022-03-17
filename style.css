@@ -90,14 +90,14 @@
   color: #fff;
 }
 
-.menu {
+.not-allowed {
   cursor: not-allowed;
 }
 
-.menu:hover{
+.not-allowed:hover{
   filter: brightness(1);
 }
 
-.menu:active{
+.not-allowed:active{
   color: #ff6700;
 }
