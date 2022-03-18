@@ -16,24 +16,65 @@ function clearCalculator() {
   historyCalc = ''
   elementDisplayCalc.textContent = ''
   elementDisplayResult.textContent = '0'
+  removeClass()
+}
+
+function displayResult(numbers, currentNumber){
+  if (numbers[1] || numbers[1] === 0) {
+    elementDisplayResult.textContent = "= " + numbers[1]
+  } else if (numbers[0]) {
+    elementDisplayResult.textContent = "= " + numbers[0]
+  } else if (!isNaN(currentNumber)) {
+    elementDisplayResult.textContent = "= " + currentNumber
+  }
+}
+
+function removeClass(){
   elementDisplayCalc.classList.remove("element-display-calc-total")
   elementDisplayResult.classList.remove("element-display-result-total")
 }
 
+function addClass(){
+  elementDisplayCalc.classList.add("element-display-calc-total")
+  elementDisplayResult.classList.add("element-display-result-total")
+}
+
+function calcs(operation, element){
+  switch (operation) {
+    case '+':
+      currentNumber += element
+      numbers[1] = numbers[0] + Number(currentNumber)
+      break
+    case '-':
+      currentNumber += element
+      numbers[1] = numbers[0] - Number(currentNumber)
+      break
+    case '*':
+      currentNumber += element
+      numbers[1] = numbers[0] * Number(currentNumber)
+      break
+    case '/':
+      currentNumber += element
+      numbers[1] = (numbers[0] / Number(currentNumber)).toLocaleString('en-US', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 7
+      })
+      break
+  }
+}
+
+
+
 function calculate(element) {
 
   if (!isNaN(element) && numbers.length === 0) {
-    elementDisplayCalc.classList.remove("element-display-calc-total")
-    elementDisplayResult.classList.remove("element-display-result-total")
+    removeClass()
     buttonClear.textContent = 'C'
     currentNumber += element
     historyCalc = currentNumber
   } else if (isNaN(element) && currentNumber.length === 0) {
     if(result !== undefined && element !== "."){
-      console.log('aa')
-        elementDisplayCalc.classList.remove("element-display-calc-total")
-        elementDisplayResult.classList.remove("element-display-result-total")
-
+        removeClass()
         numbers[0] = Number(result)
         historyCalc = `${result}${element}` 
         lastOperation = element
@@ -64,8 +105,7 @@ function calculate(element) {
     if (element === "=" && numbers[1] !== undefined) {
       elementDisplayResult.textContent = "= " + numbers[1]
       currentNumber = ''
-      elementDisplayCalc.classList.add("element-display-calc-total")
-      elementDisplayResult.classList.add("element-display-result-total")
+      addClass()
       result = numbers[1]
       numbers = []
       return
@@ -89,49 +129,15 @@ function calculate(element) {
         historyCalc += element
       }
     }
-
-    
   }
 
   if (!isNaN(element) && numbers.length > 0) {
     historyCalc += element
-    switch (lastOperation) {
-      case '+':
-        currentNumber += element
-        numbers[1] = numbers[0] + Number(currentNumber)
-        break
-      case '-':
-        currentNumber += element
-        numbers[1] = numbers[0] - Number(currentNumber)
-        break
-      case '*':
-        currentNumber += element
-        numbers[1] = numbers[0] * Number(currentNumber)
-        break
-      case '/':
-        currentNumber += element
-        numbers[1] = (numbers[0] / Number(currentNumber)).toLocaleString('en-US', {
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 7
-        })
-        break
-      case '%':
-        
-        break
-    }
+    calcs(lastOperation, element)
   }
 
-  if (numbers[1] || numbers[1] === 0) {
-    elementDisplayResult.textContent = "= " + numbers[1]
-  } else if (numbers[0]) {
-    elementDisplayResult.textContent = "= " + numbers[0]
-  } else if (!isNaN(currentNumber)) {
-    elementDisplayResult.textContent = "= " + currentNumber
-  }
+  displayResult(numbers, currentNumber)
 
   elementDisplayCalc.textContent = historyCalc
 
 }
-
-
-
