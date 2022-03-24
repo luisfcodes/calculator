@@ -14,6 +14,7 @@ Calculator created using only HTML, CSS and pure JavaScript, to train programmin
 
 - [x] Image optimization
 - [x] Separate logic functionality into specific functions
+- [x] Layout built with Grid and Flexbox 
 - [x] Global styles
 
 ## Get started
